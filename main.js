@@ -8,13 +8,6 @@ function getRandomInteger(max)
     return Math.floor(Math.random() * max)
 }
 
-// Player Choice
-function getHumanChoice()
-{
-    const humanChoice = prompt("Rock, Paper Scissors!\nChoice your option:").toLowerCase();
-    return console.log(humanChoice);
-}
-
 // Computer Choice
 function getComputerChoice()
 {
@@ -22,40 +15,54 @@ function getComputerChoice()
 
     if(randomInteger == 0)
     {
-        return console.log("rock");
+        return "rock";
     }
 
     if(randomInteger == 1)
     {
-        return console.log("paper");
+        return "paper";
     }
 
     if(randomInteger == 2)
     {
-        return console.log("scissors");
+        return "scissors";
     }
+}
+
+// Player Choice
+function getHumanChoice()
+{
+    const humanChoice = prompt("Rock, Paper Scissors!\nChoice your option:").toLowerCase();
+    return humanChoice;
 }
 
 // Round logic
 function playRound(computerAnswer, humanAnswer)
 {
-    if(humanAnswer === 'rock' && computerAnswer === 'rock' || humanAnswer === 'paper' && computerAnswer === 'paper' || humanAnswer === 'scissors' && computerAnswer === 'scissors')
+    if(humanSelection == computerSelection)
     {
         console.log("Tie!");
-    }
-    else if(humanAnswer === 'rock' && computerAnswer === 'paper' || humanAnswer === 'paper' && computerAnswer === 'scissors' || humanAnswer === 'scissors' && computerAnswer === 'rock')
-    {
-        console.log("computer wins!");
-        computerScore++;
-    }
-    else
+    } 
+    else if(
+        (humanAnswer == 'rock' && computerAnswer == 'scissors') || 
+        (humanAnswer == 'paper' && computerAnswer == 'rock') || 
+        (humanAnswer == 'scissors' && computerAnswer == 'paper')
+    )
     {
         console.log("human wins!");
-        humanScore++;
+        humanScore++; 
+    } 
+    else 
+    {
+        console.log("computer wins!");
+        computerScore++;  
     }
 }
 
 const computerSelection = getComputerChoice();
 const humanSelection = getHumanChoice();
+
+console.log(`computer: ${computerSelection}`);
+console.log(`human: ${humanSelection}`);
 
 playRound(computerSelection, humanSelection);
