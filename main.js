@@ -1,4 +1,4 @@
-// Scores
+ // Scores
 let computerScore = 0;
 let humanScore = 0;
 
@@ -36,33 +36,60 @@ function getHumanChoice()
     return humanChoice;
 }
 
-// Round logic
-function playRound(computerAnswer, humanAnswer)
+function getGameWinner()
 {
-    if(humanSelection == computerSelection)
+    if(humanScore == computerScore)
     {
-        console.log("Tie!");
-    } 
-    else if(
-        (humanAnswer == 'rock' && computerAnswer == 'scissors') || 
-        (humanAnswer == 'paper' && computerAnswer == 'rock') || 
-        (humanAnswer == 'scissors' && computerAnswer == 'paper')
-    )
+        console.log("Tie Game!, no one win!");
+    }
+    else if(humanScore > computerScore)
     {
-        console.log("human wins!");
-        humanScore++; 
-    } 
-    else 
+        console.log("Human wins the game!");
+    }
+    else
     {
-        console.log("computer wins!");
-        computerScore++;  
+        console.log("Computer wins the game!");
     }
 }
 
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice();
+function playGame()
+{
+    // Round logic
+    function playRound(computerAnswer, humanAnswer)
+    {
+        if(humanSelection == computerSelection)
+        {
+            console.log("Tie!");
+        } 
+        else if(
+            (humanAnswer == 'rock' && computerAnswer == 'scissors') || 
+            (humanAnswer == 'paper' && computerAnswer == 'rock') || 
+            (humanAnswer == 'scissors' && computerAnswer == 'paper')
+        )
+        {
+            humanScore = humanScore + 1; 
+            console.log(`Human score: ${humanScore}`)
+        } 
+        else 
+        {
+            computerScore = computerScore + 1;  
+            console.log(`Computer score: ${computerScore}`)
+        }
+    }
 
-console.log(`computer: ${computerSelection}`);
-console.log(`human: ${humanSelection}`);
+    const computerSelection = getComputerChoice();
+    const humanSelection = getHumanChoice();
 
-playRound(computerSelection, humanSelection);
+    console.log(`computer: ${computerSelection}`);
+    console.log(`human: ${humanSelection}`);
+
+    playRound(computerSelection, humanSelection);
+
+}
+
+playGame();
+playGame();
+playGame();
+playGame();
+playGame();
+getGameWinner();
